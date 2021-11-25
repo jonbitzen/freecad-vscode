@@ -1,5 +1,11 @@
 {
-    "build":{ "dockerfile": "Dockerfile" },
+    "name": "FreeCAD-devcontainer",
+    "build":{
+         "dockerfile": "Dockerfile",
+         "args": {
+             "USER_UID" : "HOST_UID"
+         }
+    },
     "remoteUser": "developer",
     "runArgs": [
         "--net", "host",
@@ -7,17 +13,17 @@
         // use a debugger from within the container
         "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined",
 
-        // run X11 apps from within the container; requires nvidia-container-toolkit for 3D acceleration
+        // run X11 apps from within the container
         "--ipc", "host",
         "--gpus=all",
         "-v", "/tmp/.X11-unix:/tmp/.X11-unix",
-        "-v", "/run/user/1000:/run/user/1000",
+        "-v", "/run/user/HOST_UID:/run/user/HOST_UID",
         "-v", "/usr/share/icons:/usr/share/icons",
         "-e", "DISPLAY=${env:DISPLAY}",
         "-e", "QT_X11_NO_MITSHM=1",
-        "-e", "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus",
+        "-e", "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/HOST_UID/bus",
         "-e", "/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket",
-        "-e", "XDG_RUNTIME_DIR=/run/user/1000",
+        "-e", "XDG_RUNTIME_DIR=/run/user/HOST_UID",
         "-e", "NVIDIA_DRIVER_CAPABILITIES=display"
     ],
     "settings": {
@@ -28,7 +34,7 @@
         "ms-vscode.cpptools-extension-pack",
         "ms-vscode.cmake-tools", 
         "donjayamanne.githistory", 
-        "ms-python.vscode-pylance", 
         "ms-python.python",
+        "ms-python.vscode-pylance", 
         "ms-azuretools.vscode-docker"]
 }
