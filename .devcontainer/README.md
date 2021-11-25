@@ -9,7 +9,7 @@ This project contains configuration and instructions to build and develop FreeCA
 - run the script 'create-devcontainer-file.sh'.  This will create a 'devcontainer.json' file from a template file.  The generated will replace the HOST_UID variable with the user's UID from the shell.
 
 - install and configure the nvidia container toolkit and runtime:
-  - go to https::/github.com/nvidia/nvidia-docker
+  - go to https:/github.com/nvidia/nvidia-docker
   - follow the links to the installation instructions, and set up the package repository for your distro
   - install nvidia-container-toolkit and nvidia-container-runtime using your package manager
   - open your docker daemon file '/etc/docker/daemon.json' and add the following:
