@@ -27,7 +27,18 @@
         "-e", "NVIDIA_DRIVER_CAPABILITIES=display"
     ],
     "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "openInExternalApp.openMapper": [
+            {
+            "extensionName": "ui",
+                "apps": [
+                    {
+                        "title": "QtCreator",
+                        "openCommand": "/usr/bin/qtcreator"
+                    }
+                ]
+            }
+        ]
     },
     "extensions": [
         "ms-vscode.cpptools",
@@ -36,5 +47,6 @@
         "donjayamanne.githistory", 
         "ms-python.python",
         "ms-python.vscode-pylance", 
-        "ms-azuretools.vscode-docker"]
+        "ms-azuretools.vscode-docker",
+        "YuTengjing.open-in-external-app"]
 }
