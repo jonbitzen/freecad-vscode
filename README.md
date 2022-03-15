@@ -6,6 +6,8 @@ This project contains configuration and instructions to build and develop FreeCA
 
 - copy or link the folder '.devcontainer' into your FreeCAD source folder
 
+- copy the folder '.vscode' into your FreeCAD source folder, or if it already exists copy 'launch.json' there
+
 - run the script 'create-base-image.sh'.  This will build the standard FreeCAD continuous integration image, which we will use as a base for the development image
 
 - run the script 'create-devcontainer-file.sh'.  This will create a 'devcontainer.json' file from a template file.  The generated file will replace the HOST_UID variable with the user's UID from the shell.
