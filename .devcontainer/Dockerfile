@@ -1,15 +1,17 @@
-FROM freecad-ci:latest
+FROM ubuntu:24.04
 
 ARG USERNAME=developer
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
-# Create the user
-RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    #
-    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
+
+RUN usermod -l developer ubuntu \
+    && groupmod -n developer ubuntu \
     && apt-get update \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository -y --enable-source ppa:freecad-maintainers/freecad-daily && apt-get update \
+    && apt-get update \
+    && apt-get build-dep -y freecad-daily \
     && apt-get install -y sudo \
     && apt-get install -y qtcreator \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
